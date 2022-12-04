@@ -2,10 +2,8 @@
 session_start();
 
 if (!isset($_SESSION['attempts']) || !isset($_SESSION['giardino'])){
-    //prima richiesta iniziallizzo i tentativi
     $_SESSION['attempts'] = 3;
-    $_SESSION['giardino'] = array_fill(0, 10, '🪴');
-    //genero due posizioni non uguali
+    $_SESSION['giardino'] = array_fill(0, 10, 'O');
     $pos1 = random_int(0, 9);
     do {
         $pos2 = random_int(0,9);
@@ -15,7 +13,6 @@ if (!isset($_SESSION['attempts']) || !isset($_SESSION['giardino'])){
     $_SESSION['pos2'] = $pos2;
 }
 else if(isset($_POST['button'])){
-    //bottone cliccato
     $index = $_POST['button'];
 
     if($index == 'play-again'){
@@ -25,7 +22,6 @@ else if(isset($_POST['button'])){
     }
 
     if($_SESSION['status'] == 'TROVA I TESORI'){
-        //diminuisco i tentativi se non ha già perso
         $_SESSION['attempts'] -= 1;
     }
     
